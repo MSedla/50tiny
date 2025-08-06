@@ -1,6 +1,6 @@
 // script.js
 const hints = [
-  { time: "12:00", text: "První indicie: Najdi červený dům." },
+  { time: "00:47", text: "První indicie: Najdi červený dům." },
   { time: "13:00", text: "Druhá indicie: Podívej se pod lavičku." },
   { time: "14:00", text: "Třetí indicie: Vezmi si mapu." },
   { time: "15:00", text: "Čtvrtá indicie: Sleduj kompas." },
