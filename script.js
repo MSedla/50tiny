@@ -1,10 +1,10 @@
 // script.js
 const hints = [
-  { time: "00:47", text: "První hint: " },
-  { time: "01:03", text: "Druhý hint: " },
-  { time: "14:00", text: "Třetí hint: " },
-  { time: "15:00", text: "Čtvrtý hint: " },
-  { time: "16:00", text: "Pátý hint: " }
+  { time: "00:47", text: "První hint: Petr Kožíšek" },
+  { time: "01:03", text: "Druhý hint: "},
+  { time: "14:00", text: "Třetí hint: 7275"},
+  { time: "15:00", text: "Čtvrtý hint: "},
+  { time: "16:00", text: "Pátý hint: "}
 ];
 
 const output = document.getElementById("output");
