@@ -2,7 +2,14 @@
 body {
   font-family: 'Roboto', sans-serif;
   padding: 20px;
-  background-color: #f7f7f7;
+  body {
+  background-image: url('img/pozadi.jpg'); /* cesta k obrázku */
+  background-repeat: repeat;               /* opakovat ve všech směrech */
+  background-size: auto;                   /* velikost obrázku zachována */
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+}
+
   color: #333;
 }
 
