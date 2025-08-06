@@ -1,7 +1,7 @@
 /* style.css */
 
 body {
-  background-image: url('img/bitmap.jpg'); /* cesta k obrázku */
+  background-image: url('img/test.jpg'); /* cesta k obrázku */
   background-repeat: repeat;               /* opakovat ve všech směrech */
   background-size: auto;                   /* velikost obrázku zachována */
   font-family: 'Roboto', sans-serif;
