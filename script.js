@@ -1,10 +1,10 @@
 // script.js
 const hints = [
-  { time: "00:47", text: "První indicie: Najdi červený dům." },
-  { time: "13:00", text: "Druhá indicie: Podívej se pod lavičku." },
-  { time: "14:00", text: "Třetí indicie: Vezmi si mapu." },
-  { time: "15:00", text: "Čtvrtá indicie: Sleduj kompas." },
-  { time: "16:00", text: "Pátá indicie: Hledej pod kamenem." }
+  { time: "00:47", text: "První hint: " },
+  { time: "01:03", text: "Druhý hint: " },
+  { time: "14:00", text: "Třetí hint: " },
+  { time: "15:00", text: "Čtvrtý hint: " },
+  { time: "16:00", text: "Pátý hint: " }
 ];
 
 const output = document.getElementById("output");
