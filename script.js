@@ -1,10 +1,11 @@
 // script.js
 const hints = [
   { time: "00:47", text: "První hint: Petr Kožíšek" },
-  { time: "01:03", text: "Druhý hint: ", image: "img/hint2.jpg" },
-  { time: "14:00", text: "Třetí hint: 7275" },
-  { time: "15:00", text: "Čtvrtý hint: " image: "img/hint3.jpg" },
-  { time: "16:00", text: "Pátý hint: " }
+  { time: "01:00", text: "Druhý hint: ", image: "img/hint2.jpg" },
+  { time: "01:01", text: "Třetí hint: 7275" },
+  { time: "01:02", text: "Čtvrtý hint: " image: "img/hint3.jpg" },
+  { time: "01:03", text: "Pátý hint: = 12.884615384615384615384615384615" }
+  { time: "01:04", text: "Šestý hint: ↑ 335/26" }
 ];
 
 const output = document.getElementById("output");
