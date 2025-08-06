@@ -3,7 +3,7 @@
 body {
   background-image: url('img/pozadi.jpg'); /* cesta k obrázku */
   background-repeat: repeat;               /* opakovat ve všech směrech */
-  background-size: auto;                   /* velikost obrázku zachována */
+  background-size: 63px 90px;                   /* velikost obrázku zachována */
   font-family: 'Roboto', sans-serif;
   padding: 20px;
   color: #333;
