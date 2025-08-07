@@ -1,12 +1,7 @@
 //neni to od tebe hezke, ze si to ctes najednou cele tady >:(
 const hints = [
-  { time: "00:47", text: "První hint: Petr Kožíšek" },
-  { time: "01:00", text: "Druhý hint: ", image: "img/hint2.jpg" },
-  { time: "01:01", text: "Třetí hint: 7275" },
-  { time: "01:02", text: "Čtvrtý hint: ", image: "img/hint3.jpg" },
-  { time: "01:03", text: "Pátý hint: = 12.884615384615384615384615384615" },
-  { time: "01:04", text: "Šestý hint: ↑ 335/26" },
-  { time: "01:05", text: "Sedmý hint: ↑ 335/26" }
+  { time: "11:47", text: "Pátý hint: 177 8" },
+  { time: "15:49", text: "Sedmý hint: 0 012" },
 ];
 
 const output = document.getElementById("output");
