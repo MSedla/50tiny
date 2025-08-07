@@ -5,10 +5,137 @@
   <meta charset="UTF-8">
   <title>To už je to tu zas?</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .question {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    .hint {
+      display: none;
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
 </head>
 <body>
   <h1>Tady se budou v průběhu dne objevovat nějaký hinty</h1>
-  <div id="output"></div>
-  <script src="script.js"></script>
+
+  <div id="quiz">
+    <!-- Otázka 1 -->
+    <div class="question">
+      <p>1. Kdo je nejlepší vnouče?</p>
+      <label><input type="radio" name="q1" value="Marek"> Marek</label><br>
+      <label><input type="radio" name="q1" value="Dan"> Dan</label><br>
+      <label><input type="radio" name="q1" value="Lucka"> Lucka</label><br>
+      <label><input type="radio" name="q1" value="Zuza"> Zuza</label><br>
+      <button onclick="checkAnswer('q1', 'Marek', 'hint1')">Odeslat</button>
+      <div id="hint1" class="hint">Hint 1: Petr Kožíšek</div>
+    </div>
+
+    <!-- Otázka 2 -->
+    <div class="question">
+      <p>2. Kolik letos slavím?</p>
+      <label><input type="radio" name="q2" value="25"> 25</label><br>
+      <label><input type="radio" name="q2" value="47"> 47</label><br>
+      <label><input type="radio" name="q2" value="46"> 46</label><br>
+      <label><input type="radio" name="q2" value="50"> 50</label><br>
+      <button onclick="checkAnswer('q2', '50', 'hint2')">Odeslat</button>
+      <div id="hint2" class="hint">Hint 2: <img src="img/hint2.jpg" style="max-width: 300px;"></div>
+    </div>
+
+    <!-- Otázka 3 -->
+    <div class="question">
+      <p>3. Jak se Hynek jmenuje opravdovým jménem?</p>
+      <label><input type="radio" name="q3" value="Nikdo neví"> Nikdo neví</label><br>
+      <label><input type="radio" name="q3" value="Tomáš Garrigue Masaryk"> Tomáš Garrigue Masaryk</label><br>
+      <label><input type="radio" name="q3" value="Brad Pitt"> Brad Pitt</label><br>
+      <label><input type="radio" name="q3" value="Jarda Lhota"> Jarda Lhota</label><br>
+      <button onclick="checkAnswer('q3', 'Nikdo neví', 'hint3')">Odeslat</button>
+      <div id="hint3" class="hint">Hint 3: 7275</div>
+    </div>
+
+    <!-- Otázka 4 -->
+    <div class="question">
+      <p>4. Jak často sekám trávu?</p>
+      <label><input type="radio" name="q4" value="2x týdně"> 2x týdně</label><br>
+      <label><input type="radio" name="q4" value="10x měsíčně"> 10x měsíčně</label><br>
+      <label><input type="radio" name="q4" value="On je někdy čas kdy nesekám?"> On je někdy čas kdy nesekám?</label><br>
+      <label><input type="radio" name="q4" value="5x týdně"> 5x týdně</label><br>
+      <button onclick="checkAnswer('q4', 'On je někdy čas kdy nesekám?', 'hint4')">Odeslat</button>
+      <div id="hint4" class="hint">Hint 4: <img src="img/hint3.jpg" style="max-width: 300px;"></div>
+    </div>
+
+    <!-- Otázka 5 -->
+    <div class="question">
+      <p>5. Kde nejradši spí kocouři?</p>
+      <label><input type="radio" name="q5" value="Na gaučíčku"> Na gaučíčku</label><br>
+      <label><input type="radio" name="q5" value="Na polštářích"> Na polštářích</label><br>
+      <label><input type="radio" name="q5" value="Nesnášejí spaní"> Nesnášejí spaní</label><br>
+      <label><input type="radio" name="q5" value="Na posteli"> Na posteli</label><br>
+      <button onclick="checkAnswer('q5', 'Nesnášejí spaní', 'hint5')">Odeslat</button>
+      <div id="hint5" class="hint">Hint 5: = 12.884615384615...</div>
+    </div>
+
+    <!-- Otázka 6 -->
+    <div class="question">
+      <p>6. Závidím Markovi jeho kšiltovku?</p>
+      <label><input type="radio" name="q6" value="ANO"> ANO</label><br>
+      <label><input type="radio" name="q6" value="NE"> NE</label><br>
+      <button onclick="checkAnswer('q6', 'ANO', 'hint6')">Odeslat</button>
+      <div id="hint6" class="hint">Hint 6: ↑ 335/26</div>
+    </div>
+
+    <!-- Otázka 7 -->
+    <div class="question">
+      <p>7. Už víš kam?</p>
+      <label><input type="radio" name="q7" value="ANO"> ANO</label><br>
+      <label><input type="radio" name="q7" value="NE"> NE</label><br>
+      <button onclick="checkFinal()">Odeslat</button>
+      <div id="hint7" class="hint"></div>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer(questionName, correctValue, hintId) {
+      const options = document.getElementsByName(questionName);
+      let selected = null;
+      options.forEach(opt => {
+        if (opt.checked) selected = opt.value;
+      });
+
+      if (selected === correctValue) {
+        document.getElementById(hintId).style.display = "block";
+      } else {
+        alert("Špatná odpověď.");
+      }
+
+      options.forEach(opt => opt.disabled = true);
+    }
+
+    function checkFinal() {
+      const options = document.getElementsByName("q7");
+      let selected = null;
+      options.forEach(opt => {
+        if (opt.checked) selected = opt.value;
+      });
+
+      const hint = document.getElementById("hint7");
+
+      if (selected === "ANO") {
+        hint.innerHTML = "Well well well, dobře ty na tvůj věk :)";
+      } else if (selected === "NE") {
+        hint.innerHTML = "Dish Belgická 335/26";
+      } else {
+        hint.innerHTML = "Vyber odpověď!";
+      }
+
+      hint.style.display = "block";
+      options.forEach(opt => opt.disabled = true);
+    }
+  </script>
 </body>
 </html>
