@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>To už je to tu zas?</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .question, .hint {
-      display: none;
-      margin-top: 20px;
+    .question {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
     }
     .hint {
       color: green;
       font-weight: bold;
+      margin-top: 10px;
+    }
+    label {
+      cursor: pointer;
+      display: block;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <h1>Tady se budou v průěhu dne objevovat nějaký hinty</h1>
+  <h1>Tady se budou v průběhu dne objevovat nějaký hinty</h1>
   <div id="quiz-container"></div>
 
   <script>
@@ -57,18 +64,18 @@
         hint: "Hint 5: = 12.884615384615..."
       },
       {
-        time: "01:04",
+        time: "02:58",
         question: "Závidím Markovi jeho kšiltovku?",
         answers: ["ANO", "NE"],
         correct: "ANO",
         hint: "Hint 6: ↑ 335/26"
       },
       {
-        time: "01:05",
+        time: "11:05",
         question: "Už víš kam?",
         answers: ["ANO", "NE"],
         correct: "ANO",
-        hint: "Hint 7: Well well well dobře ty na tvůj věk :)",
+        hint: "Well well well dobře ty na tvůj věk :)",
         wrongHint: "Dish Belgická 335/26"
       }
     ];
@@ -83,20 +90,33 @@
       quizData.forEach((item, index) => {
         const [h, m] = item.time.split(":").map(Number);
         if (currentHour > h || (currentHour === h && currentMinutes >= m)) {
-          let el = document.getElementById("q" + index);
-          if (!el) {
-            // vytvořit otázku
-            el = document.createElement("div");
-            el.id = "q" + index;
-            el.className = "question";
-            el.innerHTML = `<p>${item.question}</p>` +
-              item.answers.map(ans => `
-                <label><input type="radio" name="q${index}" value="${ans}"> ${ans}</label><br>
-              `).join("") +
-              `<button onclick="submitAnswer(${index})">Odeslat</button>
-              <div id="hint${index}" class="hint"></div>`;
-            container.appendChild(el);
-            el.style.display = "block";
+          // pokud otázka ještě není vytvořena, vytvoříme ji
+          if (!document.getElementById("q" + index)) {
+            const div = document.createElement("div");
+            div.id = "q" + index;
+            div.className = "question";
+
+            // otázka
+            let html = `<p><strong>${item.question}</strong></p>`;
+
+            // odpovědi jako radio buttons
+            item.answers.forEach((answer, i) => {
+              html += `
+                <label>
+                  <input type="radio" name="q${index}" value="${answer}">
+                  ${answer}
+                </label>
+              `;
+            });
+
+            // tlačítko odeslat
+            html += `<button onclick="submitAnswer(${index})">Odeslat</button>`;
+
+            // prostor pro hint
+            html += `<div id="hint${index}" class="hint"></div>`;
+
+            div.innerHTML = html;
+            container.appendChild(div);
           }
         }
       });
@@ -106,10 +126,12 @@
       const question = quizData[index];
       const options = document.getElementsByName("q" + index);
       let selected = null;
-      options.forEach(opt => {
-        if (opt.checked) selected = opt.value;
-      });
-
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].checked) {
+          selected = options[i].value;
+          break;
+        }
+      }
       const hintBox = document.getElementById("hint" + index);
 
       if (!selected) {
@@ -119,13 +141,17 @@
 
       if (selected === question.correct) {
         hintBox.innerHTML = question.hint;
-        options.forEach(opt => opt.disabled = true);
+        for (let i = 0; i < options.length; i++) {
+          options[i].disabled = true;
+        }
       } else {
         hintBox.innerHTML = question.wrongHint || "<span style='color: red;'>Špatně :( Zkus to znovu.</span>";
       }
     }
 
+    // Zobrazíme otázky hned po načtení stránky
     checkTimeAndShowQuestions();
+    // a pak každou minutu kontrolujeme, jestli už má přijít další otázka
     setInterval(checkTimeAndShowQuestions, 60000);
   </script>
 </body>
