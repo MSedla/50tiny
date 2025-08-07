@@ -1,10 +1,10 @@
 //neni to od tebe hezke, ze si to ctes najednou cele tady >:(
 const hints = [
-  { time: "11:47", text: "Pátý hint: 177 8" },
+  { time: "11:47", text: "Čtvrtý hint: 177 8" },
   { time: "15:49", text: "Sedmý hint: 0 012" },
 ];
 
-const output = document.getElementById("output");
+const output = document.getElementById("outputquiz");
 
 function updateHints() {
   const now = new Date();
