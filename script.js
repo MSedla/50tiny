@@ -2,7 +2,7 @@
 const hints = [
   { time: "11:47", text: "Čtvrtý hint: 177 8" },
   { time: "13:50", text: "Sedmý hint: 0 012" },
-  { time: "14:19", text: "Osmý hint: PETR KRÁL , dat. nar. 25. srpna 1977" },
+  { time: "14:19", text: "Osmý hint: PETR KRÁL , datum nar. 25. srpna 1977" },
 ];
 
 const output = document.getElementById("outputquiz");
