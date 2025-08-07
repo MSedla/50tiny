@@ -119,11 +119,10 @@
 
       if (selected === question.correct) {
         hintBox.innerHTML = question.hint;
+        options.forEach(opt => opt.disabled = true);
       } else {
-        hintBox.innerHTML = question.wrongHint || "<span style='color: red;'>Špatně :(</span>";
+        hintBox.innerHTML = question.wrongHint || "<span style='color: red;'>Špatně :( Zkus to znovu.</span>";
       }
-
-      options.forEach(opt => opt.disabled = true);
     }
 
     checkTimeAndShowQuestions();
