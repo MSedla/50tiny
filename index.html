@@ -1,160 +1,16 @@
-<!-- neni od tebe hezky ze si ctes tohle nebo tamto predtim nez mas >:( -->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
   <title>To už je to tu zas?</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .question {
-      margin-bottom: 30px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 15px;
-    }
-    .hint {
-      color: green;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    label {
-      cursor: pointer;
-      display: block;
-      margin: 5px 0;
-    }
-  </style>
 </head>
 <body>
   <h1>Tady se budou v průběhu dne objevovat nějaký hinty</h1>
   <div id="quiz-container"></div>
   <div id="outputquiz"></div>
-  <script src="script.js"></script>
-  <script>
-    const quizData = [
-      {
-        time: "08:00",
-        question: "Kdo je nejlepší vnouče?",
-        answers: ["Marek", "Dan", "Lucka", "Zuza"],
-        correct: "Marek",
-        hint: "První hint: Petr Kožíšek"
-      },
-      {
-        time: "09:15",
-        question: "Kolik letos slavím?",
-        answers: ["25", "47", "46", "50"],
-        correct: "50",
-        hint: "Druhý hint: <img src='img/hint2.jpg' alt='Hint 2' width='300'>"
-      },
-      {
-        time: "10:59",
-        question: "Jak se Hynek jmenuje opravdovým jménem?",
-        answers: ["Nikdo neví", "Tomáš Garrigue Masaryk", "Brad Pitt", "Jarda Lhota"],
-        correct: "Nikdo neví",
-        hint: "Třetí hint: 7275"
-      },
-      {
-        time: "12:27",
-        question: "Jak často sekám trávu?",
-        answers: ["2x týdně", "10x měsíčně", "On je někdy čas kdy nesekám?", "5x týdně"],
-        correct: "On je někdy čas kdy nesekám?",
-        hint: "Pátý hint: <img src='img/hint3.jpg' alt='Hint 4' width='300'>"
-      },
-      {
-        time: "12:48",
-        question: "Kde nejradši spí kocouři?",
-        answers: ["Na gaučíčku", "Na polštářích", "Nesnášejí spaní", "Na posteli"],
-        correct: "Nesnášejí spaní",
-        hint: "Šestý hint: = 12.884615384615..."
-      },
-      {
-        time: "15:55",
-        question: "Závidím Markovi jeho kšiltovku?",
-        answers: ["ANO", "NE"],
-        correct: "ANO",
-        hint: "Devátý hint: ↑ 335/26"
-      },
-      {
-        time: "16:30",
-        question: "Už víš kam?",
-        answers: ["ANO", "NE"],
-        correct: "ANO",
-        hint: "Desátý hint: Well well well dobře ty na tvůj věk :)",
-        wrongHint: "Desátý hint: Dish Belgická 335/26"
-      }
-    ];
+	<script src="script.js"></script>
+	<script src="hints.js"></script>
 
-    const container = document.getElementById("quiz-container");
-
-    function checkTimeAndShowQuestions() {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const currentMinutes = now.getMinutes();
-
-      quizData.forEach((item, index) => {
-        const [h, m] = item.time.split(":").map(Number);
-        if (currentHour > h || (currentHour === h && currentMinutes >= m)) {
-          // pokud otázka ještě není vytvořena, vytvoříme ji
-          if (!document.getElementById("q" + index)) {
-            const div = document.createElement("div");
-            div.id = "q" + index;
-            div.className = "question";
-
-            // otázka
-            let html = `<p><strong>${item.question}</strong></p>`;
-
-            // odpovědi jako radio buttons
-            item.answers.forEach((answer, i) => {
-              html += `
-                <label>
-                  <input type="radio" name="q${index}" value="${answer}">
-                  ${answer}
-                </label>
-              `;
-            });
-
-            // tlačítko odeslat
-            html += `<button onclick="submitAnswer(${index})">Odeslat</button>`;
-
-            // prostor pro hint
-            html += `<div id="hint${index}" class="hint"></div>`;
-
-            div.innerHTML = html;
-            container.appendChild(div);
-          }
-        }
-      });
-    }
-
-    function submitAnswer(index) {
-      const question = quizData[index];
-      const options = document.getElementsByName("q" + index);
-      let selected = null;
-      for (let i = 0; i < options.length; i++) {
-        if (options[i].checked) {
-          selected = options[i].value;
-          break;
-        }
-      }
-      const hintBox = document.getElementById("hint" + index);
-
-      if (!selected) {
-        hintBox.innerHTML = "<span style='color: orange;'>Vyber odpověď!</span>";
-        return;
-      }
-
-      if (selected === question.correct) {
-        hintBox.innerHTML = question.hint;
-        for (let i = 0; i < options.length; i++) {
-          options[i].disabled = true;
-        }
-      } else {
-        hintBox.innerHTML = question.wrongHint || "<span style='color: red;'>Špatně :( Máš malej GYAT.</span>";
-      }
-    }
-
-    // Zobrazíme otázky hned po načtení stránky
-    checkTimeAndShowQuestions();
-    // a pak každou minutu kontrolujeme, jestli už má přijít další otázka
-    setInterval(checkTimeAndShowQuestions, 60000);
-  </script>
 </body>
 </html>
