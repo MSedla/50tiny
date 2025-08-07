@@ -1,3 +1,4 @@
+//neni to od tebe hezke, ze si to ctes najednou cele tady >:(
 const hints = [
   { time: "00:47", text: "První hint: Petr Kožíšek" },
   { time: "01:00", text: "Druhý hint: ", image: "img/hint2.jpg" },
