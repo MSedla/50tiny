@@ -1,3 +1,4 @@
+//doufám že tady nepodvádíš >:(
 const hints = [
   { time: "11:47", text: "Čtvrtý hint: 177 8" },
   { time: "13:50", text: "Sedmý hint: 0 012" },
@@ -25,3 +26,4 @@ function updateHints() {
 
 updateHints();
 setInterval(updateHints, 60000); // kontrola každou minutu
+
