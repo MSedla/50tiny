@@ -1,4 +1,3 @@
-// script.js
 const hints = [
   { time: "00:47", text: "První hint: Petr Kožíšek" },
   { time: "01:00", text: "Druhý hint: ", image: "img/hint2.jpg" },
@@ -21,7 +20,11 @@ function updateHints() {
   hints.forEach(hint => {
     const [h, m] = hint.time.split(":").map(Number);
     if (currentHour > h || (currentHour === h && currentMinutes >= m)) {
-      content += `<p>${hint.text}</p>`;
+      content += `<div class="hint"><p>${hint.text}</p>`;
+      if (hint.image) {
+        content += `<img src="${hint.image}" alt="Hint image">`;
+      }
+      content += `</div>`;
     }
   });
 
