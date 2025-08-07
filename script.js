@@ -1,3 +1,4 @@
+//opovaž se tady podvádět grrrrr
 const quizData = [
   {
     time: "08:00",
